@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Keisha Chandler × Rêver Creative</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --black: #061313;
+      --chartreuse: #D7CF2E;
+      --white: #ffffff;
+      --dark: #0a1a1a;
+      --mid: #122020;
+      --muted: rgba(255,255,255,0.4);
+      --border: rgba(215,207,46,0.2);
+    }
+
+```
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: var(--black);
+  color: var(--white);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* GRAIN OVERLAY */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.6;
+}
+
+/* NAV */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 48px;
+  background: linear-gradient(to bottom, var(--black), transparent);
+}
+
+.nav-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 13px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--white);
+  text-decoration: none;
+  opacity: 0.7;
+}
+
+.nav-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover { color: var(--chartreuse); }
+
+/* HERO */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 48px 80px;
+  z-index: 1;
+}
+
+.hero-eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--chartreuse);
+  margin-bottom: 20px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 0.3s;
+}
+
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(52px, 8vw, 110px);
+  font-weight: 300;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  margin-bottom: 32px;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 0.5s;
+}
+
+.hero-title em {
+  font-style: italic;
+  color: var(--chartreuse);
+}
+
+.hero-sub {
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  max-width: 420px;
+  line-height: 1.8;
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 0.7s;
+}
+
+.hero-line {
+  position: absolute;
+  right: 48px;
+  bottom: 80px;
+  width: 1px;
+  height: 120px;
+  background: linear-gradient(to bottom, transparent, var(--chartreuse));
+  opacity: 0;
+  animation: fadeIn 1s ease forwards 1s;
+}
+
+/* SECTIONS */
+section {
+  position: relative;
+  z-index: 1;
+  padding: 100px 48px;
+  border-top: 1px solid var(--border);
+}
+
+.section-label {
+  font-size: 10px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--chartreuse);
+  margin-bottom: 48px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+  max-width: 80px;
+}
+
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(36px, 5vw, 64px);
+  font-weight: 300;
+  line-height: 1.1;
+  margin-bottom: 48px;
+}
+
+/* WELCOME */
+.welcome-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.welcome-body {
+  font-size: 15px;
+  line-height: 2;
+  color: rgba(255,255,255,0.75);
+}
+
+.welcome-body p + p { margin-top: 24px; }
+
+.welcome-sig {
+  margin-top: 48px;
+  padding-top: 32px;
+  border-top: 1px solid var(--border);
+}
+
+.welcome-sig p {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 18px;
+  color: var(--muted);
+}
+
+.welcome-sig strong {
+  display: block;
+  font-family: 'DM Sans', sans-serif;
+  font-style: normal;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--chartreuse);
+  margin-top: 8px;
+  font-weight: 400;
+}
+
+.welcome-detail {
+  background: var(--mid);
+  border: 1px solid var(--border);
+  padding: 40px;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+}
+
+.detail-row:last-child { border-bottom: none; }
+
+.detail-label {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.detail-value {
+  color: var(--white);
+  text-align: right;
+}
+
+/* SCOPE */
+.scope-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.scope-table th {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-align: left;
+  padding: 0 0 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.scope-table td {
+  padding: 24px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  vertical-align: top;
+  font-size: 14px;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.8);
+}
+
+.scope-table td:first-child {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--white);
+  width: 30%;
+  padding-right: 40px;
+}
+
+/* DELIVERABLES */
+.deliverables-grid {
+  display: grid;
+  gap: 2px;
+}
+
+.deliverable-item {
+  background: var(--mid);
+  padding: 32px 40px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 24px;
+  transition: background 0.3s;
+}
+
+.deliverable-item:hover { background: #162828; }
+
+.deliverable-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 400;
+  margin-bottom: 6px;
+}
+
+.deliverable-desc {
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+  line-height: 1.6;
+}
+
+.status-badge {
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border: 1px solid;
+  white-space: nowrap;
+}
+
+.status-badge.complete {
+  color: var(--chartreuse);
+  border-color: var(--chartreuse);
+}
+
+.status-badge.progress {
+  color: #fff;
+  border-color: rgba(255,255,255,0.3);
+}
+
+.status-badge.upcoming {
+  color: var(--muted);
+  border-color: rgba(255,255,255,0.1);
+}
+
+/* CONTRACT */
+.contract-block {
+  background: var(--mid);
+  border: 1px solid var(--border);
+  padding: 60px;
+  max-width: 700px;
+}
+
+.contract-block p {
+  font-size: 14px;
+  line-height: 1.9;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 40px;
+}
+
+.contract-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--chartreuse);
+  text-decoration: none;
+  border-bottom: 1px solid var(--chartreuse);
+  padding-bottom: 4px;
+  transition: opacity 0.3s;
+}
+
+.contract-link:hover { opacity: 0.7; }
+
+/* FOOTER */
+footer {
+  position: relative;
+  z-index: 1;
+  padding: 60px 48px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 13px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.footer-link {
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-link:hover { color: var(--chartreuse); }
+
+/* ANIMATIONS */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  nav { padding: 20px 24px; }
+  .nav-links { display: none; }
+  .hero { padding: 0 24px 60px; }
+  section { padding: 72px 24px; }
+  .welcome-grid { grid-template-columns: 1fr; gap: 48px; }
+  footer { padding: 40px 24px; flex-direction: column; gap: 16px; text-align: center; }
+  .deliverable-item { grid-template-columns: 1fr; }
+  .contract-block { padding: 40px 24px; }
+}
+```
+
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+
+  <nav>
+    <a href="#" class="nav-logo">Rêver Creative</a>
+    <ul class="nav-links">
+      <li><a href="#welcome">Welcome</a></li>
+      <li><a href="#scope">Scope</a></li>
+      <li><a href="#deliverables">Deliverables</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+
+  <div class="hero">
+    <p class="hero-eyebrow">Client Portal · Rêver Creative</p>
+    <h1 class="hero-title">Keisha<br/><em>Chandler</em></h1>
+    <p class="hero-sub">Your dedicated project space. Everything related to your engagement lives here.</p>
+    <div class="hero-line"></div>
+  </div>
+
+  <!-- WELCOME -->
+
+  <section id="welcome">
+    <p class="section-label">01 — Welcome</p>
+    <div class="welcome-grid">
+      <div>
+        <h2 class="section-title">Welcome,<br/>Keisha.</h2>
+        <div class="welcome-body">
+          <p>Some founders wait for the perfect moment. You've never been that kind of founder. You build, and when the season calls for it, you begin again without flinching. That's exactly why Rêver Creative is honored to walk this next chapter with you. What we're building together isn't just a brand refresh. It's the visual and strategic foundation that finally matches the depth of what you've already built and the boldness of where you're headed.</p>
+          <p>This portal is your single source of truth throughout our engagement. Every deliverable, every update, every next step lives here — so you always know exactly where things stand.</p>
+        </div>
+        <div class="welcome-sig">
+          <p>With intention,</p>
+          <strong>Jasmine & Ibi · Rêver Creative</strong>
+        </div>
+      </div>
+      <div class="welcome-detail">
+        <div class="detail-row">
+          <span class="detail-label">Client</span>
+          <span class="detail-value">Keisha Chandler</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Engagement</span>
+          <span class="detail-value">Full Brand Refresh</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Start Date</span>
+          <span class="detail-value">April 2, 2026</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Partner</span>
+          <span class="detail-value">Rêver Creative, LLC</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Website</span>
+          <span class="detail-value">revercrt.com</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCOPE -->
+
+  <section id="scope">
+    <p class="section-label">02 — Project Scope</p>
+    <h2 class="section-title">The Work.</h2>
+    <table class="scope-table">
+      <thead>
+        <tr>
+          <th>Deliverable</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Messaging</td>
+          <td>Brand voice guide, updated bio, tagline, elevator pitch, and service descriptions.</td>
+        </tr>
+        <tr>
+          <td>Service Architecture</td>
+          <td>Tiered service menu, naming, and positioning copy for each offering.</td>
+        </tr>
+        <tr>
+          <td>Visual Identity</td>
+          <td>Logo refinement or redesign, color palette, typography system, and brand standards guide.</td>
+        </tr>
+        <tr>
+          <td>Media</td>
+          <td>Branded headshots, lifestyle content shoot, social strategy, content pillars, posting cadence, template suite, and web direction.</td>
+        </tr>
+        <tr>
+          <td>Business Development</td>
+          <td>Ideal client profile, outreach strategy, referral framework, and lead generation recommendations.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- DELIVERABLES -->
+
+  <section id="deliverables">
+    <p class="section-label">03 — Deliverables</p>
+    <h2 class="section-title">Where We Are.</h2>
+    <div class="deliverables-grid">
+
+```
+  <div class="deliverable-item">
+    <div>
+      <p class="deliverable-name">Messaging</p>
+      <p class="deliverable-desc">Brand voice guide, updated bio, tagline, elevator pitch, and service descriptions.</p>
+      <a href="https://drive.google.com/drive/folders/15lJKNH5ZPC4TMwL1bhVJLEcJJ5IRxXj6" target="_blank" style="font-size:11px;letter-spacing:0.1em;color:var(--chartreuse);text-decoration:none;margin-top:10px;display:inline-block;">View Files →</a>
+    </div>
+    <span class="status-badge progress">In Progress</span>
+  </div>
+
+  <div class="deliverable-item">
+    <div>
+      <p class="deliverable-name">Service Architecture</p>
+      <p class="deliverable-desc">Tiered service menu, naming, and positioning copy for each offering.</p>
+      <a href="https://drive.google.com/drive/folders/1LhO_f3jf7XJtGHBH2ovsxo2dzgN7KYKg" target="_blank" style="font-size:11px;letter-spacing:0.1em;color:var(--chartreuse);text-decoration:none;margin-top:10px;display:inline-block;">View Files →</a>
+    </div>
+    <span class="status-badge progress">In Progress</span>
+  </div>
+
+  <div class="deliverable-item">
+    <div>
+      <p class="deliverable-name">Visual Identity</p>
+      <p class="deliverable-desc">Logo refinement or redesign, color palette, typography system, and brand standards guide.</p>
+      <a href="https://drive.google.com/drive/folders/12NvFmjE2iXmKYZn-1i_eHfG7V9gNcXc6" target="_blank" style="font-size:11px;letter-spacing:0.1em;color:var(--chartreuse);text-decoration:none;margin-top:10px;display:inline-block;">View Files →</a>
+    </div>
+    <span class="status-badge upcoming">Upcoming</span>
+  </div>
+
+  <div class="deliverable-item">
+    <div>
+      <p class="deliverable-name">Media</p>
+      <p class="deliverable-desc">Branded headshots, lifestyle content shoot, social strategy, content pillars, posting cadence, template suite, and web direction.</p>
+      <a href="https://drive.google.com/drive/folders/1YnrZOMce_FuN0-TIr3oEAtPlZWqVMN-H" target="_blank" style="font-size:11px;letter-spacing:0.1em;color:var(--chartreuse);text-decoration:none;margin-top:10px;display:inline-block;">View Files →</a>
+    </div>
+    <span class="status-badge upcoming">Upcoming</span>
+  </div>
+
+  <div class="deliverable-item">
+    <div>
+      <p class="deliverable-name">Business Development</p>
+      <p class="deliverable-desc">Ideal client profile, outreach strategy, referral framework, and lead generation recommendations.</p>
+      <a href="https://drive.google.com/drive/folders/1cHJHg9RDjHGnY1I6c8EA8i6BgvxBcLEu" target="_blank" style="font-size:11px;letter-spacing:0.1em;color:var(--chartreuse);text-decoration:none;margin-top:10px;display:inline-block;">View Files →</a>
+    </div>
+    <span class="status-badge upcoming">Upcoming</span>
+  </div>
+
+</div>
+```
+
+  </section>
+
+  <!-- FOOTER -->
+
+  <footer>
+    <span class="footer-logo">Rêver Creative</span>
+    <a href="https://revercrt.com" target="_blank" class="footer-link">revercrt.com</a>
+  </footer>
+
+</body>
+</html>
